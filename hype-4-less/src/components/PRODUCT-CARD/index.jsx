@@ -28,7 +28,7 @@ const OuterCardDiv = styled.div`
         }
     }
 
-    &.rainbow {
+    &.hotDeal {
         position: relative;
         z-index: 0;
         max-width: 400px;
@@ -44,11 +44,10 @@ const OuterCardDiv = styled.div`
             top: -50%;
             width: 200%;
             height: 200%;
-            background-color: #399953;
             background-repeat: no-repeat;
             background-size: 50% 50%, 50% 50%;
             background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-            background-image: linear-gradient(#399953, #399953), linear-gradient(#fbb300, #fbb300), linear-gradient(#d53e33, #d53e33), linear-gradient(#377af5, #377af5);
+            background-image: linear-gradient(#DA1F05, #F33C04), linear-gradient(#F33C04, #FE650D), linear-gradient(#FE650D, #FFC11F), linear-gradient(#DA1F05, #FFC11F);
             animation: rotate 4s linear infinite;
         }
         
@@ -110,16 +109,22 @@ const StyledProductInfo = styled.p`
     }
 `
 
+const StyledProductInfoWrapper = styled.div`
+    display:flex;
+`
+
 const ProductCard = (props) => {
     return (
-        <OuterCardDiv className="rainbow">
+        <OuterCardDiv className={props.dealType}>
             <StyledLinkWrapper href={props.prodLink}>
                 <InnerCardDiv>
                     <CardProdImage src={props.prodImg}></CardProdImage>
                     <StyledProductName>{props.prodName}</StyledProductName>
                     <StyledProductInfo className="productCW">{props.prodCW}</StyledProductInfo>
-                    <StyledProductInfo className="oldPrice">{props.oldPrice}</StyledProductInfo>
-                    <StyledProductInfo className="newPrice">{props.salePrice}</StyledProductInfo>
+                    <StyledProductInfoWrapper>
+                        <StyledProductInfo className="oldPrice">{props.oldPrice}</StyledProductInfo>
+                        <StyledProductInfo className="newPrice">{props.salePrice}</StyledProductInfo>
+                    </StyledProductInfoWrapper>
                 </InnerCardDiv> 
             </StyledLinkWrapper>
         </OuterCardDiv>
