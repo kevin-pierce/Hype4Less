@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import ProductCard from "../PRODUCT-CARD/index";
+
+const ProductsWrapper= styled.div`
+    display:grid;
+    row-gap: 10px;
+    column-gap: 10px;
+`
 
 const ReebokProdPage = () => {
     const [prodData, setProdData] = useState([]);
@@ -28,13 +35,15 @@ const ReebokProdPage = () => {
             ) 
             : 
             (
-                <ul>
+                <ProductsWrapper>
                     {prodData.map(item => (
-                        <li>
-                            <a href={item["prodLink"]}>{item["prodName"]}</a>
-                        </li>
+                        <ProductCard prodName = {item["prodName"]}
+                                     prodImg = {item["prodImg"]}
+                                     prodCW = {item["prodCW"]}
+                                     salePrice = {item["prodReducedPrice"]}
+                                     oldPrice = {item["prodOriginalPrice"]}/>
                     ))}
-                </ul> 
+                </ProductsWrapper>
             )}
         </div>
     );
