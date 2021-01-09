@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-const AdidasProdPage = () => {
+const ReebokProdPage = () => {
     const [prodData, setProdData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -10,10 +10,11 @@ const AdidasProdPage = () => {
         const fetchData = async () => {
 
             setIsLoading(true);
-            const allData = await axios('http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/tiro/');     // PRODUCTION
-            //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/tiro/                      DEPLOYMENT
+            const allData = await axios('https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/reebok/ ');     // PRODUCTION
+            //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/reebok/   
+            //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/reebok/                  
             
-            setProdData(Object.values(allData.data.adidasData));
+            setProdData(Object.values(allData.data.reebokData));
             setIsLoading(false);
         };
         fetchData();
@@ -39,6 +40,4 @@ const AdidasProdPage = () => {
     );
 }
 
-export default AdidasProdPage;
-
-                
+export default ReebokProdPage;
