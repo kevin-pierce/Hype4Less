@@ -7,6 +7,7 @@ const OuterCardDiv = styled.div`
     max-width:400px;
     margin-top:20px;
     margin-bottom:20px;
+    padding:1rem;
 
     {
         border-color:#e0e0e0;
@@ -34,11 +35,11 @@ const OuterCardDiv = styled.div`
         max-width: 400px;
         border-radius: 10px;
         overflow: hidden;
-        padding: 2rem;
         
         &::before {
             content: '';
             position: absolute;
+            background-color:#FFF;
             z-index: -2;
             left: -50%;
             top: -50%;
@@ -104,13 +105,24 @@ const StyledProductInfo = styled.p`
     }
 
     &.newPrice{
+        margin-left:10px;
         font-size: 2em;
+        color:#FF0000;
+    }
+
+    &.salePercent{
+        position:relative;
+        left:73%;
+        font-size:1em;
+        font-weight:700;
         color:#FF0000;
     }
 `
 
 const StyledProductInfoWrapper = styled.div`
     display:flex;
+    justify-content: flex-start;
+    align-items:baseline;
 `
 
 const ProductCard = (props) => {
@@ -118,6 +130,7 @@ const ProductCard = (props) => {
         <OuterCardDiv className={props.dealType}>
             <StyledLinkWrapper href={props.prodLink}>
                 <InnerCardDiv>
+                    <StyledProductInfo className="salePercent">{props.sale} OFF</StyledProductInfo>
                     <CardProdImage src={props.prodImg}></CardProdImage>
                     <StyledProductName>{props.prodName}</StyledProductName>
                     <StyledProductInfo className="productCW">{props.prodCW}</StyledProductInfo>
