@@ -40,15 +40,17 @@ const ReebokProdPage = () => {
             (
                 <ProductsWrapper>
                     {prodData.map(item => (
-                        <ProductCard prodName = {item["prodName"]}
-                                     prodImg = {item["prodImg"]}
-                                     prodCW = {item["prodCW"]}
-                                     salePrice = {item["prodReducedPrice"]}
-                                     oldPrice = {item["prodOriginalPrice"]}
-                                     prodLink = {item["prodLink"]}
-                                     dealType = {parseFloat(item["salePercent"].slice(0, -1)) >= 50.0 ? "hotDeal" : ""}
-                                     sale = {item["salePercent"]}
-                                     />
+                        <ProductCard 
+                        key={item["_id"]}
+                        prodName = {item["prodName"]}
+                        prodImg = {item["prodImg"]}
+                        prodCW = {item["prodCW"]}
+                        salePrice = {item["prodReducedPrice"]}
+                        oldPrice = {item["prodOriginalPrice"]}
+                        prodLink = {item["prodLink"]}
+                        dealType = {parseFloat(item["salePercent"].slice(0, -1)) >= 50.0 ? "hotDeal" : ""}
+                        sale = {item["salePercent"]}
+                        />
                     ))}
                 </ProductsWrapper>
             )}

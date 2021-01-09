@@ -88,6 +88,7 @@ const CardProdImage = styled.img`
 `
 
 const StyledProductName = styled.h1`
+    margin-top:10px;
     font-size:2em;
     color:#000000;
 `
@@ -96,6 +97,7 @@ const StyledProductInfo = styled.p`
     &.productCW{
         font-size:1em;
         color:#656565;
+        margin: 0;
     }
 
     &.oldPrice{
@@ -111,11 +113,17 @@ const StyledProductInfo = styled.p`
     }
 
     &.salePercent{
-        position:absolute;
+        position:relative;
         left:65%;
         font-size:1.2em;
         font-weight:700;
         color:#FF0000;
+    }
+
+    &.productType{
+        font-size:1em;
+        color:#656565;
+        margin: 0;
     }
 `
 
@@ -133,6 +141,7 @@ const ProductCard = (props) => {
                     <StyledProductInfo className="salePercent">{props.sale} OFF</StyledProductInfo>
                     <CardProdImage src={props.prodImg}></CardProdImage>
                     <StyledProductName>{props.prodName}</StyledProductName>
+                    <StyledProductInfo className="productType">{props.prodType}</StyledProductInfo>
                     <StyledProductInfo className="productCW">{props.prodCW}</StyledProductInfo>
                     <StyledProductInfoWrapper>
                         <StyledProductInfo className="oldPrice">{props.oldPrice}</StyledProductInfo>
