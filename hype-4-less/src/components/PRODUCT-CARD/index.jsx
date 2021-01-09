@@ -3,11 +3,34 @@ import styled from "styled-components";
 
 const OuterCardDiv = styled.div`
     border-radius:25px;
-    border:2px solid #000000;
+    border:2px solid #CDCDCD;
     max-width:400px;
+    margin-top:20px;
+
+    {
+        border-color:#CDCDCD;
+        margin-top:20px;
+        transition: border-color 0.25s, margin-top 0.25s;
+    }
+
+    :hover{
+        margin-top:15px;
+        border-color:#000000;
+        transition: border-color 0.25s, ; 
+    }
 `
 const InnerCardDiv = styled.div`
     margin:10px;
+`
+
+const StyledLinkWrapper = styled.a`
+    display:block;
+    
+
+    :hover{
+        text-decoration: none;
+    }
+
 `
 
 const CardProdImage = styled.img`
@@ -24,17 +47,18 @@ const StyledProductInfo = styled.p`
         font-size:0.75em;
         color:#ff0000;
     }
-
 `
 
 const ProductCard = (props) => {
     return (
         <OuterCardDiv>
-            <InnerCardDiv>
-                <CardProdImage src={props.prodImg}></CardProdImage>
-                <StyledProductName>{props.prodName}</StyledProductName>
-                <StyledProductInfo className="productCW">{props.prodCW}</StyledProductInfo>
-            </InnerCardDiv>
+            <StyledLinkWrapper href={props.prodLink}>
+                <InnerCardDiv>
+                    <CardProdImage src={props.prodImg}></CardProdImage>
+                    <StyledProductName>{props.prodName}</StyledProductName>
+                    <StyledProductInfo className="productCW">{props.prodCW}</StyledProductInfo>
+                </InnerCardDiv> 
+            </StyledLinkWrapper>
         </OuterCardDiv>
     );
 }

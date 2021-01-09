@@ -41,7 +41,8 @@ const ReebokProdPage = () => {
                                      prodImg = {item["prodImg"]}
                                      prodCW = {item["prodCW"]}
                                      salePrice = {item["prodReducedPrice"]}
-                                     oldPrice = {item["prodOriginalPrice"]}/>
+                                     oldPrice = {item["prodOriginalPrice"]}
+                                     prodLink = {item["prodLink"]}/>
                     ))}
                 </ProductsWrapper>
             )}
