@@ -82,7 +82,9 @@ const ReebokProdPage = () => {
         //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/reebok/   
         //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/reebok/                  
         
-        setProdData(Object.values(allData.data.reebokData));
+        setProdData(() => (
+            [...prodData, ...Object.values(allData.data.reebokData)]
+        ));
         setPage(page + 1)
     };
 
