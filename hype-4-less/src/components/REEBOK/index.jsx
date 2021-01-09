@@ -61,23 +61,42 @@ const ProductsWrapper= styled.div`
 
 const ReebokProdPage = () => {
     const [prodData, setProdData] = useState([]);
-    //const [isLoading, setIsLoading] = useState(false);
-    //const [page, setPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        const fetchData = async () => {
-
-            //setIsLoading(true);
-            const allData = await axios('https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/reebok/ ');     // PRODUCTION
-            //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/reebok/   
-            //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/reebok/                  
-            
-            setProdData(Object.values(allData.data.reebokData));
-            //setIsLoading(false);
-        };
-        fetchData();
+        getData()
+        window.addEventListener('scroll', handleScroll);
     }, []);
 
+    const handleScroll = () => {
+		if (Math.ceil(window.innerHeight + document.documentElement.scrollTop) !== document.documentElement.offsetHeight ||isLoading)
+			return;
+		setIsLoading(true);
+		console.log(isLoading);
+	};
+    
+    const getData = async () => {
+
+        const allData = await axios(`https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/reebok/page=${page}/ `);     // PRODUCTION
+        //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/reebok/   
+        //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/reebok/                  
+        
+        setProdData(Object.values(allData.data.reebokData));
+        setPage(page + 1)
+    };
+
+    useEffect(() => {
+		if (!isLoading) {
+            return;
+        } 
+		getMoreData();
+	}, [isLoading]);
+
+	const getMoreData = () => {
+		getData();
+		setIsLoading(false);
+	};
     
     return (
         <div>
@@ -98,6 +117,7 @@ const ReebokProdPage = () => {
                     ))}
                 </ProductsWrapper>
             </Suspense>
+            {isLoading && <StyledLoader className="loader">Loading...</StyledLoader>}
         </div>
     );
 }
