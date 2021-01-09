@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import ProductCard from "../PRODUCT-CARD/index";
+
+const ProductCard = React.lazy(() => import("../PRODUCT-CARD/index"));
 
 const StyledLoader = styled.div`
 &.loader,
@@ -60,18 +61,19 @@ const ProductsWrapper= styled.div`
 
 const ReebokProdPage = () => {
     const [prodData, setProdData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    //const [isLoading, setIsLoading] = useState(false);
+    //const [page, setPage] = useState(1);
 
     useEffect(() => {
         const fetchData = async () => {
 
-            setIsLoading(true);
+            //setIsLoading(true);
             const allData = await axios('https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/reebok/ ');     // PRODUCTION
             //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/reebok/   
             //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/reebok/                  
             
             setProdData(Object.values(allData.data.reebokData));
-            setIsLoading(false);
+            //setIsLoading(false);
         };
         fetchData();
     }, []);
@@ -79,11 +81,7 @@ const ReebokProdPage = () => {
     
     return (
         <div>
-            {isLoading ? (
-                <StyledLoader className="loader">Loading...</StyledLoader>
-            ) 
-            : 
-            (
+            <Suspense fallback={<StyledLoader className="loader">Loading...</StyledLoader>}>
                 <ProductsWrapper>
                     {prodData.map(item => (
                         <ProductCard 
@@ -99,7 +97,7 @@ const ReebokProdPage = () => {
                         />
                     ))}
                 </ProductsWrapper>
-            )}
+            </Suspense>
         </div>
     );
 }
