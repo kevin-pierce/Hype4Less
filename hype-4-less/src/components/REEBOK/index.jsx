@@ -4,9 +4,12 @@ import axios from "axios";
 import ProductCard from "../PRODUCT-CARD/index";
 
 const ProductsWrapper= styled.div`
+    margin-left:20px;
+    margin-right:20px;
     display:grid;
-    row-gap: 10px;
-    column-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 15px;
+    column-gap: 25px;
 `
 
 const ReebokProdPage = () => {
