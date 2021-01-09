@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const OuterCardDiv = styled.div`
+    position:relative;
     border-radius:25px;
     border:2px solid #e0e0e0;
     max-width:400px;
@@ -30,7 +31,6 @@ const OuterCardDiv = styled.div`
     }
 
     &.hotDeal {
-        position: relative;
         z-index: 0;
         max-width: 400px;
         border-radius: 10px;
@@ -111,9 +111,9 @@ const StyledProductInfo = styled.p`
     }
 
     &.salePercent{
-        position:relative;
-        left:73%;
-        font-size:1em;
+        position:absolute;
+        left:65%;
+        font-size:1.2em;
         font-weight:700;
         color:#FF0000;
     }
