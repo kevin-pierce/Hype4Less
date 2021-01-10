@@ -15,7 +15,7 @@ const OuterCardDiv = styled.div`
         border-color:#e0e0e0;
         margin-top:20px;
         margin-bottom:20px;
-        transition: border-color 0.25s, margin-top 0.25s, margin-bottom 0.25s;
+        transition: border-color 0.25s ease, margin-top 0.25s ease, margin-bottom 0.25s ease;
     
 
         :hover{
@@ -23,7 +23,7 @@ const OuterCardDiv = styled.div`
             margin-top:15px;
             margin-bottom:25px;
             border-color:#43464b;
-            transition: border-color 0.25s, margin-top 0.25s, margin-bottom 0.25s; 
+            transition: border-color 0.25s ease, margin-top 0.25s ease, margin-bottom 0.25s ease; 
         }
     }
 
@@ -41,13 +41,13 @@ const OuterCardDiv = styled.div`
         
         margin-top:20px;
         margin-bottom:20px;
-        transition: margin-top 0.25s, margin-bottom 0.25s;
+        transition: margin-top 0.25s ease, margin-bottom 0.25s ease;
 
         :hover{
             cursor:pointer;
             margin-top:15px;
             margin-bottom:25px;
-            transition: margin-top 0.25s, margin-bottom 0.25s; 
+            transition: margin-top 0.25s ease, margin-bottom 0.25s ease; 
         }
 
         &::before {
@@ -169,17 +169,17 @@ const ProductCard = (props) => {
                     </InnerCardDiv> 
             </OuterCardDiv>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} size="lg">
                 <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>{props.prodName}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={handleClose}>
-                    Save Changes
+                <Button variant="danger" onClick={handleClose}>
+                    Purchase
                 </Button>
                 </Modal.Footer>
             </Modal>
@@ -191,3 +191,4 @@ const ProductCard = (props) => {
 export default ProductCard;
 
 // <StyledLinkWrapper href={props.prodLink}>
+//style={{"backgroundColor":"#e06666ff", "color":"#FFF", "borderColor":"#e06666ff"}}

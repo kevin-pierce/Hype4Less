@@ -39,7 +39,7 @@ const NavbarHeader = () => {
                     width="60"
                     height="60"
                     className="d-inline-block align-top"
-                    alt="React Bootstrap logo"
+                    alt="Hype4Less Logo"
                 />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
