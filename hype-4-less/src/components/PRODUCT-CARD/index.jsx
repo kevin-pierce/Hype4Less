@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { Modal, Button } from "react-bootstrap";
 
 const OuterCardDiv = styled.div`
     position:relative;
@@ -18,6 +19,7 @@ const OuterCardDiv = styled.div`
     
 
         :hover{
+            cursor:pointer;
             margin-top:15px;
             margin-bottom:25px;
             border-color:#43464b;
@@ -42,6 +44,7 @@ const OuterCardDiv = styled.div`
         transition: margin-top 0.25s, margin-bottom 0.25s;
 
         :hover{
+            cursor:pointer;
             margin-top:15px;
             margin-bottom:25px;
             transition: margin-top 0.25s, margin-bottom 0.25s; 
@@ -90,7 +93,6 @@ const StyledLinkWrapper = styled.a`
         text-decoration: none;
         color:#000000;
     }
-
 `
 
 const CardProdImage = styled.img`
@@ -145,23 +147,47 @@ const StyledProductInfoWrapper = styled.div`
 `
 
 const ProductCard = (props) => {
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
-        <OuterCardDiv className={props.dealType}>
-            <StyledLinkWrapper href={props.prodLink}>
-                <InnerCardDiv>
-                    <StyledProductInfo className="salePercent">{props.sale} OFF</StyledProductInfo>
-                    <CardProdImage src={props.prodImg}></CardProdImage>
-                    <StyledProductName>{props.prodName}</StyledProductName>
-                    <StyledProductInfo className="productType">{props.prodType}</StyledProductInfo>
-                    <StyledProductInfo className="productCW">{props.prodCW}</StyledProductInfo>
-                    <StyledProductInfoWrapper>
-                        <StyledProductInfo className="oldPrice">{props.oldPrice}</StyledProductInfo>
-                        <StyledProductInfo className="newPrice">{props.salePrice}</StyledProductInfo>
-                    </StyledProductInfoWrapper>
-                </InnerCardDiv> 
-            </StyledLinkWrapper>
-        </OuterCardDiv>
+        <>
+            <OuterCardDiv className={props.dealType} onClick={handleShow}>
+                    <InnerCardDiv>
+                        <StyledProductInfo className="salePercent">{props.sale} OFF</StyledProductInfo>
+                        <CardProdImage src={props.prodImg}></CardProdImage>
+                        <StyledProductName>{props.prodName}</StyledProductName>
+                        <StyledProductInfo className="productType">{props.prodType}</StyledProductInfo>
+                        <StyledProductInfo className="productCW">{props.prodCW}</StyledProductInfo>
+                        <StyledProductInfoWrapper>
+                            <StyledProductInfo className="oldPrice">{props.oldPrice}</StyledProductInfo>
+                            <StyledProductInfo className="newPrice">{props.salePrice}</StyledProductInfo>
+                        </StyledProductInfoWrapper>
+                    </InnerCardDiv> 
+            </OuterCardDiv>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={handleClose}>
+                    Save Changes
+                </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
     );
 }
 
+
 export default ProductCard;
+
+// <StyledLinkWrapper href={props.prodLink}>
