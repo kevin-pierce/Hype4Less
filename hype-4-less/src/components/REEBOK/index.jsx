@@ -108,6 +108,7 @@ const ReebokProdPage = () => {
                         <ProductCard 
                         key={item["_id"]}
                         prodName = {item["prodName"]}
+                        prodType ={item["prodType"]}
                         prodImg = {item["prodImg"]}
                         prodCW = {item["prodCW"]}
                         salePrice = {item["prodReducedPrice"]}
@@ -119,9 +120,11 @@ const ReebokProdPage = () => {
                     ))}
                 </ProductsWrapper>
             </Suspense>
-            {isLoading && <StyledLoader className="loader">Loading...</StyledLoader>}
+            {isLoading}
         </div>
     );
 }
 
 export default ReebokProdPage;
+
+// && <StyledLoader className="loader">Loading...</StyledLoader>

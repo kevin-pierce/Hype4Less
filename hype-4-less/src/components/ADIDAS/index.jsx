@@ -106,6 +106,7 @@ const AdidasProdPage = () => {
                         key={item["_id"]}
                         prodName = {item["prodName"]}
                         prodImg = {item["prodImg"]}
+                        prodType ={item["prodType"]}
                         prodCW = {item["prodCW"]}
                         salePrice = {item["prodReducedPrice"]}
                         oldPrice = {item["prodOriginalPrice"]}
@@ -116,7 +117,7 @@ const AdidasProdPage = () => {
                     ))}
                 </ProductsWrapper>
             </Suspense>
-            {isLoading && <StyledLoader className="loader">Loading...</StyledLoader>}
+            {isLoading}
         </div>
     );
 }
