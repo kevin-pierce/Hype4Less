@@ -155,10 +155,30 @@ const StyledModalProdInfoWrapper = styled.div`
 
 const StyledDesc = styled.div`
     display: block;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     white-space:pre-wrap;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     margin: 1em 0;
     width:80%;
+`
+
+const SizesWrapper = styled.div`
+    width:wrap;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content:flex-start;
+`
+
+const SizeItem = styled.div`
+    width:wrap;
+    height:auto;
+    padding:0.4em;
+    margin:0 0.4em 0 0; 
+    border:2px solid transparent;
+    border-radius:10px;
+    border-color:#e06666ff;
+    text-align: center;
+    font-weight:500;
+    color:#e06666ff;
 `
 
 const ProductCard = (props) => {
@@ -196,6 +216,13 @@ const ProductCard = (props) => {
                                 <StyledProductInfo className="productType">{props.prodType}</StyledProductInfo>
                                 <StyledProductInfo className="productCW">{props.prodCW}</StyledProductInfo>
                                 <StyledDesc>{props.desc}</StyledDesc>
+                                <p>Sizes Available</p>
+                                <SizesWrapper>
+                                    {props.sizes.map(item => (
+                                        <SizeItem>{item}</SizeItem>
+                                    ))}
+                                </SizesWrapper>
+                                
                             </StyledModalProdInfoWrapper>
                     </StyledModalBodyWrapper>
                 </Modal.Body>
