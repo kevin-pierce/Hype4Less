@@ -1,7 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import ProductCard from "../PRODUCT-CARD/index";
+
+const StyledLoader = styled.div`
+&.loader,
+&.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+&.loader {
+  margin: 60px auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(93,76,76, 0.2);
+  border-right: 1.1em solid rgba(93,76,76, 0.2);
+  border-bottom: 1.1em solid rgba(93,76,76, 0.2);
+  border-left: 1.1em solid #5d4c4c;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+`
 
 const ProductsWrapper= styled.div`
     margin-left:20px;
@@ -15,29 +59,47 @@ const ProductsWrapper= styled.div`
 const AdidasProdPage = () => {
     const [prodData, setProdData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        const fetchData = async () => {
-
-            setIsLoading(true);
-            const allData = await axios('https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/adidas/');     // PRODUCTION
-            //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/tiro/       PRODUCTION 
-            //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/tiro/               TESTING
-            
-            setProdData(Object.values(allData.data.adidasData));
-            setIsLoading(false);
-        };
-        fetchData();
+        getData()
+        window.addEventListener('scroll', handleScroll);
     }, []);
 
+    const handleScroll = () => {
+		if (Math.ceil(window.innerHeight + document.documentElement.scrollTop) !== document.documentElement.offsetHeight ||isLoading)
+			return;
+		setIsLoading(true);
+		console.log(isLoading);
+	};
     
+    const getData = async () => {
+
+        const allData = await axios(`http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/page=${page}/ `);     // PRODUCTION
+        //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/adidas/   
+        //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/                  
+        
+        setProdData(() => (
+            [...prodData, ...Object.values(allData.data.adidasData)]
+        ));
+        setPage(page + 1)
+    };
+
+    useEffect(() => {
+		if (!isLoading) {
+            return;
+        } 
+		getMoreData();
+	}, [isLoading]);
+
+	const getMoreData = () => {
+		getData();
+		setIsLoading(false);
+	};
+
     return (
         <div>
-            {isLoading ? (
-                <h1>Is loading...</h1>
-            ) 
-            : 
-            (
+            <Suspense fallback={<StyledLoader className="loader">Loading...</StyledLoader>}>
                 <ProductsWrapper>
                     {prodData.map(item => (
                         <ProductCard 
@@ -45,7 +107,6 @@ const AdidasProdPage = () => {
                         prodName = {item["prodName"]}
                         prodImg = {item["prodImg"]}
                         prodCW = {item["prodCW"]}
-                        prodType = {item["prodType"]}
                         salePrice = {item["prodReducedPrice"]}
                         oldPrice = {item["prodOriginalPrice"]}
                         prodLink = {item["prodLink"]}
@@ -53,8 +114,9 @@ const AdidasProdPage = () => {
                         sale = {item["salePercent"]}
                         />
                     ))}
-                </ProductsWrapper> 
-            )}
+                </ProductsWrapper>
+            </Suspense>
+            {isLoading && <StyledLoader className="loader">Loading...</StyledLoader>}
         </div>
     );
 }
