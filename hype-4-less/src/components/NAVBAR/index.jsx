@@ -1,11 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import { Navbar, Nav, Form, FormControl, Button, NavDropdown } from "react-bootstrap";
+import icon from "../../img/invertedHype4Less_noText.svg"
+
+const StyledIcon = styled.img`
+    opacity:1;
+    transition:opacity 0.15s;
+
+    :hover{
+        opacity:0.75;
+        transition: opacity 0.15s;
+    }
+`
 
 const NavbarHeader = () => {
     return(
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+        <Navbar collapseOnSelect expand="lg" variant="dark" style={{"background-color":"#e06666ff", "color":"#FFF"}}>
+            <Navbar.Brand href="/">
+                <StyledIcon
+                    src={icon}
+                    width="60"
+                    height="60"
+                    className="d-inline-block align-top"
+                    alt="React Bootstrap logo"
+                />
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">

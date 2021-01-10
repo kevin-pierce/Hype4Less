@@ -3,25 +3,26 @@ import styled from "styled-components";
 
 const OuterCardDiv = styled.div`
     position:relative;
-    border-radius:25px;
-    border:2px solid #e0e0e0;
+    border-radius:10px;
+    border:2px solid transparent;
     max-width:400px;
     margin-top:20px;
     margin-bottom:20px;
     padding:1rem;
 
-    {
+    &.default{
         border-color:#e0e0e0;
         margin-top:20px;
         margin-bottom:20px;
         transition: border-color 0.25s, margin-top 0.25s, margin-bottom 0.25s;
-    }
+    
 
-    :hover{
-        margin-top:15px;
-        margin-bottom:25px;
-        border-color:#43464b;
-        transition: border-color 0.25s, margin-top 0.25s, margin-bottom 0.25s; 
+        :hover{
+            margin-top:15px;
+            margin-bottom:25px;
+            border-color:#43464b;
+            transition: border-color 0.25s, margin-top 0.25s, margin-bottom 0.25s; 
+        }
     }
 
     @keyframes rotate {
@@ -36,6 +37,16 @@ const OuterCardDiv = styled.div`
         border-radius: 10px;
         overflow: hidden;
         
+        margin-top:20px;
+        margin-bottom:20px;
+        transition: margin-top 0.25s, margin-bottom 0.25s;
+
+        :hover{
+            margin-top:15px;
+            margin-bottom:25px;
+            transition: margin-top 0.25s, margin-bottom 0.25s; 
+        }
+
         &::before {
             content: '';
             position: absolute;
