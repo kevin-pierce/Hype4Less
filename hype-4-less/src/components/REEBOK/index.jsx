@@ -116,6 +116,8 @@ const ReebokProdPage = () => {
                         prodLink = {item["prodLink"]}
                         dealType = {parseFloat(item["salePercent"].slice(0, -1)) >= 50.0 ? "hotDeal" : "default"}
                         sale = {item["salePercent"]}
+                        sizes = {item["prodSizeAvailability"]}
+                        desc = {item["prodDesc"]}
                         />
                     ))}
                 </ProductsWrapper>

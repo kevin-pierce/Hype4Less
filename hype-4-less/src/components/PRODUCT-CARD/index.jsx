@@ -84,20 +84,17 @@ const InnerCardDiv = styled.div`
     margin:10px;
 `
 
-const StyledLinkWrapper = styled.a`
-    display:block;
-    color:#000000;
-    
-
-    :hover{
-        text-decoration: none;
-        color:#000000;
-    }
-`
-
 const CardProdImage = styled.img`
-    max-width:100%;
-    height:auto;
+    &.prodCard{
+        max-width:100%;
+        height:auto;
+    }
+
+    &.prodModal {
+        max-width:90%;
+        height:auto;
+    }
+    
 `
 
 const StyledProductName = styled.h1`
@@ -146,6 +143,24 @@ const StyledProductInfoWrapper = styled.div`
     align-items:baseline;
 `
 
+const StyledModalBodyWrapper = styled.div`
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+`
+
+const StyledModalProdInfoWrapper = styled.div`
+    display:flex;
+    flex-direction: column;
+`
+
+const StyledDesc = styled.div`
+    display: block;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    white-space:pre-wrap;
+    margin: 1em 0;
+    width:80%;
+`
+
 const ProductCard = (props) => {
 
     const [show, setShow] = useState(false);
@@ -158,7 +173,7 @@ const ProductCard = (props) => {
             <OuterCardDiv className={props.dealType} onClick={handleShow}>
                     <InnerCardDiv>
                         <StyledProductInfo className="salePercent">{props.sale} OFF</StyledProductInfo>
-                        <CardProdImage src={props.prodImg}></CardProdImage>
+                        <CardProdImage className="prodCard" src={props.prodImg}></CardProdImage>
                         <StyledProductName>{props.prodName}</StyledProductName>
                         <StyledProductInfo className="productType">{props.prodType}</StyledProductInfo>
                         <StyledProductInfo className="productCW">{props.prodCW}</StyledProductInfo>
@@ -171,16 +186,26 @@ const ProductCard = (props) => {
 
             <Modal show={show} onHide={handleClose} size="lg">
                 <Modal.Header closeButton>
-                <Modal.Title>{props.prodName}</Modal.Title>
+                    <Modal.Title>{props.prodName}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>
+                    <StyledModalBodyWrapper>
+                        <CardProdImage className="prodModal" src={props.prodImg}></CardProdImage>
+                            <StyledModalProdInfoWrapper>
+                                <StyledProductName>{props.prodName}</StyledProductName>
+                                <StyledProductInfo className="productType">{props.prodType}</StyledProductInfo>
+                                <StyledProductInfo className="productCW">{props.prodCW}</StyledProductInfo>
+                                <StyledDesc>{props.desc}</StyledDesc>
+                            </StyledModalProdInfoWrapper>
+                    </StyledModalBodyWrapper>
+                </Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    Close
-                </Button>
-                <Button variant="danger" onClick={handleClose}>
-                    Purchase
-                </Button>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="danger" href={props.prodLink}>
+                        Purchase
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </>
