@@ -9,13 +9,30 @@ const StyledIcon = styled.img`
 
     :hover{
         opacity:0.75;
+        transition: opacity 0.2s;
+    }
+`
+
+const StyledNavLink = styled(Nav.Link)`
+    color:#FFF;
+    font-weight:700;
+    opacity:1;
+    transition:opacity 0.15s;
+
+    :hover{
+        opacity:0.75;
         transition: opacity 0.15s;
     }
 `
 
+const StyledNavDropdown = styled(NavDropdown)`
+    color:#FFF;
+    font-weight:700;
+`
+
 const NavbarHeader = () => {
     return(
-        <Navbar collapseOnSelect expand="lg" variant="dark" style={{"background-color":"#e06666ff", "color":"#FFF"}}>
+        <Navbar collapseOnSelect expand="lg" variant="dark" style={{"backgroundColor":"#e06666ff", "color":"#FFF"}}>
             <Navbar.Brand href="/">
                 <StyledIcon
                     src={icon}
@@ -28,21 +45,21 @@ const NavbarHeader = () => {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/hot">Hot Deals</Nav.Link>
-                    <Nav.Link href="/upcoming-releases">Releaes</Nav.Link>
-                    <NavDropdown title="Brands" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="/adidas">Adidas</NavDropdown.Item>
-                        <NavDropdown.Item href="/nike">Nike</NavDropdown.Item>
-                        <NavDropdown.Item href="/reebok">Reebok</NavDropdown.Item>
+                    <StyledNavLink href="/hot" style={{"color":"#FFF"}}>Hot Deals</StyledNavLink>
+                    <StyledNavLink href="/upcoming-releases" style={{"color":"#FFF"}}>Releases</StyledNavLink>
+                    <StyledNavDropdown title="Brands" id="collasible-nav-dropdown" style={{"color":"#FFF"}} active={true}>
+                        <NavDropdown.Item href="/adidas" >Adidas</NavDropdown.Item>
+                        <NavDropdown.Item href="/nike" >Nike</NavDropdown.Item>
+                        <NavDropdown.Item href="/reebok" >Reebok</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown>
+                        <NavDropdown.Item href="#action/3.4" >Separated link</NavDropdown.Item>
+                    </StyledNavDropdown>
                 </Nav>
                 <Nav>
-                    <Nav.Link href="#deets">More deets</Nav.Link>
-                    <Nav.Link eventKey={2} href="#memes">
-                        Dank memes
-                    </Nav.Link>
+                    <StyledNavLink href="/about-us" style={{"color":"#FFF"}}>About</StyledNavLink>
+                    <StyledNavLink eventKey={2} href="/contact" style={{"color":"#FFF"}}>
+                        Contact
+                    </StyledNavLink>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
