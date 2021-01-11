@@ -169,16 +169,17 @@ const SizesWrapper = styled.div`
 `
 
 const SizeItem = styled.div`
-    width:wrap;
+    min-width:60px;
     height:auto;
     padding:0.4em;
-    margin:0 0.4em 0 0; 
+    margin:0.4em 0.4em 0 0; 
     border:2px solid transparent;
     border-radius:10px;
     border-color:#e06666ff;
     text-align: center;
     font-weight:500;
     color:#e06666ff;
+    
 `
 
 const ProductCard = (props) => {
@@ -216,7 +217,7 @@ const ProductCard = (props) => {
                                 <StyledProductInfo className="productType">{props.prodType}</StyledProductInfo>
                                 <StyledProductInfo className="productCW">{props.prodCW}</StyledProductInfo>
                                 <StyledDesc>{props.desc ? props.desc.replaceAll("\u2022", "\n\u2022") : ""}</StyledDesc>
-                                <p>Sizes Available</p>
+                                <p>Sizes Available:</p>
                                 <SizesWrapper>
                                     {props.sizes.map(item => (
                                         <SizeItem>{item}</SizeItem>

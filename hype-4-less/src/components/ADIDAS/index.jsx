@@ -55,6 +55,13 @@ const ProductsWrapper= styled.div`
     row-gap: 15px;
     column-gap: 25px;
 `
+// Helper function that formats the product type for consistency
+const formatType = (prodType) => {
+  if (prodType == "Originals") return "Unisex";
+  else if (prodType == "Men") return "Men's";
+  else if (prodType == "Women") return "Women's";
+  else return prodType;
+}
 
 const AdidasProdPage = () => {
     const [prodData, setProdData] = useState([]);
@@ -106,7 +113,7 @@ const AdidasProdPage = () => {
                         key={item["_id"]}
                         prodName = {item["prodName"]}
                         prodImg = {item["prodImg"]}
-                        prodType ={item["prodType"]}
+                        prodType ={formatType(item["prodType"])}
                         prodCW = {item["prodCW"]}
                         salePrice = {item["prodReducedPrice"]}
                         oldPrice = {item["prodOriginalPrice"]}
@@ -114,7 +121,7 @@ const AdidasProdPage = () => {
                         dealType = {parseFloat(item["salePercent"].slice(0, -1)) >= 50.0 ? "hotDeal" : "default"}
                         sale = {item["salePercent"]}
                         sizes = {item["prodSizeAvailability"]}
-                        desc = {item["prodDesc"]}
+                        desc = {item["prodDesc"] ? item["prodDesc"] : "No description available."}
                         />
                     ))}
                 </ProductsWrapper>
