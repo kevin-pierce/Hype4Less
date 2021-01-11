@@ -72,6 +72,16 @@ const setMainLink = (prodQuery) => {
         //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/
         //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/adidas/running/page=
     }
+    else if (prodQuery == "originals"){
+        return `http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/originals/page=`
+        //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/originals/page=
+        //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/adidas/originals/page=
+    }
+    else if (prodQuery == "tiro"){
+        return `http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/tiro/page=`
+        //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/
+        //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/adidas/running/page=
+    }
 
 }
 

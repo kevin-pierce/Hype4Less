@@ -16,6 +16,12 @@ const AdidasProdPage = () => {
               <Route exact path = "/adidas/running" component={() => {
                 return (<GeneralProdPage prodQuery="running"/>)}}
               />
+              <Route exact path = "/adidas/originals" component={() => {
+                return (<GeneralProdPage prodQuery="originals"/>)}}
+              />
+              <Route exact path = "/adidas/tiro" component={() => {
+                return (<GeneralProdPage prodQuery="tiro"/>)}}
+              />
             </Switch>
         </div>
       </Router>
