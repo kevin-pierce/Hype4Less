@@ -169,7 +169,7 @@ const SizesWrapper = styled.div`
 `
 
 const SizeItem = styled.div`
-    min-width:60px;
+    min-width:65px;
     height:auto;
     padding:0.4em;
     margin:0.4em 0.4em 0 0; 
@@ -179,7 +179,6 @@ const SizeItem = styled.div`
     text-align: center;
     font-weight:500;
     color:#e06666ff;
-    
 `
 
 const ProductCard = (props) => {
