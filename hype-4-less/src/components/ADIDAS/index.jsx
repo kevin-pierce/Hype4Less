@@ -75,7 +75,7 @@ const AdidasProdPage = () => {
     
     const getData = async () => {
 
-        const allData = await axios(`http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/page=${page}/ `);     // PRODUCTION
+        const allData = await axios(`https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/adidas/page=${page}/ `);     // PRODUCTION
         //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/adidas/   
         //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/                  
         
@@ -113,6 +113,8 @@ const AdidasProdPage = () => {
                         prodLink = {item["prodLink"]}
                         dealType = {parseFloat(item["salePercent"].slice(0, -1)) >= 50.0 ? "hotDeal" : "default"}
                         sale = {item["salePercent"]}
+                        sizes = {item["prodSizeAvailability"]}
+                        desc = {item["prodDesc"]}
                         />
                     ))}
                 </ProductsWrapper>

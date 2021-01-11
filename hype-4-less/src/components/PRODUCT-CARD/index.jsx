@@ -215,7 +215,7 @@ const ProductCard = (props) => {
                                 <StyledProductName>{props.prodName}</StyledProductName>
                                 <StyledProductInfo className="productType">{props.prodType}</StyledProductInfo>
                                 <StyledProductInfo className="productCW">{props.prodCW}</StyledProductInfo>
-                                <StyledDesc>{props.desc}</StyledDesc>
+                                <StyledDesc>{props.desc ? props.desc.replaceAll("\u2022", "\n\u2022") : ""}</StyledDesc>
                                 <p>Sizes Available</p>
                                 <SizesWrapper>
                                     {props.sizes.map(item => (
