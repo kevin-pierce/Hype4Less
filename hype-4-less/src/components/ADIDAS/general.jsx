@@ -63,10 +63,24 @@ const formatType = (prodType) => {
   else return prodType;
 }
 
-const GeneralProdPage = () => {
+const setMainLink = (prodQuery) => {
+    if (prodQuery == "all"){
+        return `http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/page=`
+    }
+    else if (prodQuery == "running"){
+        return `http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/running/page=`
+        //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/
+        //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/adidas/running/page=
+    }
+
+}
+
+const GeneralProdPage = (props) => {
     const [prodData, setProdData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [page, setPage] = useState(1);
+
+    const mainLink = setMainLink(props.prodQuery);
 
     useEffect(() => {
         getData()
@@ -78,11 +92,11 @@ const GeneralProdPage = () => {
 			return;
 		setIsLoading(true);
 		console.log(isLoading);
-	};
+    };
     
     const getData = async () => {
 
-        const allData = await axios(`https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/adidas/page=${page}/ `);     // PRODUCTION
+        const allData = await axios(mainLink + `${page}/`);     // PRODUCTION
         //https://shoepic-backend.herokuapp.com/shoepic/api/prod/v1.0/sales/adidas/   
         //http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/                  
         
@@ -132,5 +146,3 @@ const GeneralProdPage = () => {
 }
 
 export default GeneralProdPage;
-
-                

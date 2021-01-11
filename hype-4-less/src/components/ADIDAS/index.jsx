@@ -10,10 +10,12 @@ const AdidasProdPage = () => {
         <div>
             <AdidasProdNav />
             <Switch>
-              <Route exact path = "/adidas" component={GeneralProdPage}/>
-              <Route exact path = "/adidas/originals" component={GeneralProdPage}/>
-              <Route exact path = "/adidas/running" component={GeneralProdPage}/>
-              <Route exact path = "/adidas/tiro" component={GeneralProdPage}/>
+              <Route exact path="/adidas" component={() => {
+                return (<GeneralProdPage prodQuery="all"/>)}}
+              />
+              <Route exact path = "/adidas/running" component={() => {
+                return (<GeneralProdPage prodQuery="running"/>)}}
+              />
             </Switch>
         </div>
       </Router>
@@ -23,4 +25,6 @@ const AdidasProdPage = () => {
 
 export default AdidasProdPage;
 
-                
+{/* <Route exact path = "/adidas/originals" component={GeneralProdPage}/>
+<Route exact path = "/adidas/running" component={GeneralProdPage}/>
+<Route exact path = "/adidas/tiro" component={GeneralProdPage}/> */}

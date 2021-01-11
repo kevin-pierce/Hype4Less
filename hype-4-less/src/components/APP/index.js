@@ -12,8 +12,8 @@ const App = () => {
         <NavbarHeader/>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/adidas" component={AdidasProdPage}/>
-          <Route exact path="/reebok" component={ReebokProdPage}/>
+          <Route path="/adidas" component={AdidasProdPage}/>
+          <Route path="/reebok" component={ReebokProdPage}/>
 
         </Switch>
       </div>
