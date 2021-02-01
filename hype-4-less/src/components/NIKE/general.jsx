@@ -65,13 +65,16 @@ const formatType = (prodType) => {
 
 const setMainLink = (prodQuery) => {
     if (prodQuery == "all"){
-        return `http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/adidas/page=`
+        return `http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/nike/page=`
     }
     else if (prodQuery == "running"){
         return `http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/nike/running/page=`
         }
     else if (prodQuery == "lifestyle"){
         return `http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/nike/lifestyle/page=`
+    }
+    else if (prodQuery == "jordan"){
+
     }
 
 }

@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import GeneralProdPage from "./general";
+import NikeProdNav from "./nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 const NikeProdPage = () => {
     return (
       <Router>
         <div>
+            <NikeProdNav/>
             <Switch>
               <Route exact path="/nike" component={() => {
                 return (<GeneralProdPage prodQuery="all"/>)}}
@@ -17,6 +19,9 @@ const NikeProdPage = () => {
               <Route exact path = "/nike/lifestyle" component={() => {
                 return (<GeneralProdPage prodQuery="lifestyle"/>)}}
               />
+              <Route exact path = "/nike/jordan" component={() => {
+                return (<GeneralProdPage prodQuery="jordan"/>)}}
+              />
             </Switch>
         </div>
       </Router>
@@ -25,7 +30,3 @@ const NikeProdPage = () => {
 }
 
 export default NikeProdPage;
-
-{/* <Route exact path = "/adidas/originals" component={GeneralProdPage}/>
-<Route exact path = "/adidas/running" component={GeneralProdPage}/>
-<Route exact path = "/adidas/tiro" component={GeneralProdPage}/> */}
