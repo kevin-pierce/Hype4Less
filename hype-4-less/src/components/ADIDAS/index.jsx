@@ -30,7 +30,3 @@ const AdidasProdPage = () => {
 }
 
 export default AdidasProdPage;
-
-{/* <Route exact path = "/adidas/originals" component={GeneralProdPage}/>
-<Route exact path = "/adidas/running" component={GeneralProdPage}/>
-<Route exact path = "/adidas/tiro" component={GeneralProdPage}/> */}

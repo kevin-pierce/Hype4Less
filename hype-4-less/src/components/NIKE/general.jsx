@@ -57,7 +57,7 @@ const ProductsWrapper= styled.div`
 `
 // Helper function that formats the product type for consistency
 const formatType = (prodType) => {
-  if (prodType == "Originals") return "Unisex";
+  if (prodType == "Shoe" || prodType == "Slide") return "Unisex";
   else if (prodType == "Men") return "Men's";
   else if (prodType == "Women") return "Women's";
   else return prodType;
@@ -73,9 +73,9 @@ const setMainLink = (prodQuery) => {
     else if (prodQuery == "lifestyle"){
         return `http://127.0.0.1:5000/shoepic/api/prod/v1.0/sales/nike/lifestyle/page=`
     }
-    else if (prodQuery == "jordan"){
+    // else if (prodQuery == "jordan"){
 
-    }
+    // }
 
 }
 
@@ -129,17 +129,17 @@ const GeneralProdPage = (props) => {
                     {prodData.map(item => (
                         <ProductCard 
                         key={item["_id"]}
-                        prodName = {item["shoeName"]}
-                        prodImg = {item["shoeImg"]}
-                        prodType ={formatType(item["shoeType"])}
-                        prodCW = {item["shoeCW"]}
-                        salePrice = {item["shoeReducedPrice"]}
-                        oldPrice = {item["shoeOriginalPrice"]}
-                        prodLink = {item["shoeLink"]}
+                        prodName = {item["prodName"]}
+                        prodImg = {item["prodImg"]}
+                        prodType ={formatType(item["prodType"])}
+                        prodCW = {item["prodCW"] ? item["prodCW"] : "No colour available."}
+                        salePrice = {item["prodReducedPrice"]}
+                        oldPrice = {item["prodOriginalPrice"]}
+                        prodLink = {item["prodLink"]}
                         dealType = {parseFloat(item["salePercent"].slice(0, -1)) >= 50.0 ? "hotDeal" : "default"}
                         sale = {item["salePercent"]}
-                        sizes = {item["shoeSizeAvailability"]}
-                        desc = {item["shoeDesc"] ? item["shoeDesc"] : "No description available."}
+                        sizes = {item["prodSizeAvailability"] ? item["prodSizeAvailability"] : []}
+                        desc = {item["prodDesc"] ? item["prodDesc"] : "No description available."}
                         />
                     ))}
                 </ProductsWrapper>
